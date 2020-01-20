@@ -4,9 +4,9 @@
 	"description": "crypto that works places",
 	"license": "ISC",
 	"author": "Chase Moskal <chasemoskal@gmail.com",
+	"type": "module",
 	"main": "",
 	"module": "",
-	"types": "",
 	"files": [
 		"dist",
 		"source",
@@ -17,10 +17,14 @@
 		"clean": "rimraf dist dist-cjs && mkdirp dist dist-cjs",
 		"compile-esm": "tsc",
 		"compile-cjs": "tsc --module commonjs --outDir dist-cjs",
-		"watch-esm": "tsc -w",
+		"watch": "run-p watch-esm watch-cjs",
+		"watch-esm": "npm run compile-esm -s -- --watch",
+		"watch-cjs": "npm run compile-esm -s -- --watch",
 		"generate-keys": "./generate-keys",
 		"start": "serve",
-		"test": "jest --verbose dist-cjs"
+		"test": "run-p test-node test-puppeteer",
+		"test-node": "cynic node --label='redcrypto tests (node)' dist/redcrypto.test.js",
+		"test-puppeteer": "cynic puppeteer --label='redcrypto tests (browser)' dist/redcrypto.test.js"
 	},
 	"keywords": [],
 	"repository": {
@@ -34,10 +38,13 @@
 	"devDependencies": {
 		"@types/jest": "^24.9.0",
 		"@types/node": "^13.1.7",
+		"cynic": "file:../cynic/cynic-0.1.0-dev.1.tgz",
 		"importly": "0.1.0-dev.0",
 		"jest": "^24.9.0",
+		"jest-puppeteer": "^4.4.0",
 		"mkdirp": "^0.5.1",
 		"npm-run-all": "^4.1.5",
+		"puppeteer": "^2.0.0",
 		"replace": "^1.1.5",
 		"rimraf": "^3.0.0",
 		"serve": "^11.3.0",

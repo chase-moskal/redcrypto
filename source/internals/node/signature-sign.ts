@@ -1,7 +1,7 @@
 
 import {createSign} from "crypto"
-import {algorithm, format} from "../constants.js"
 
+import {algorithm, format} from "../constants.js"
 import {SignatureSign} from "../../interfaces.js"
 
 export const signatureSign: SignatureSign = async({

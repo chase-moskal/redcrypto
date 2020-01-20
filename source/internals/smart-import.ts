@@ -1,8 +1,8 @@
 
 import {isNode} from "./is-node.js"
 
-export const smartImport = <T>(path: string, key: string) => (
+export const smartImport = <T>(path: String) => (
 	async(): Promise<T> => isNode
-		? require(`./node/${path}`)[key]
-		: (await import(`./browser/${path}`))[key]
+		? (await import(`./node/${path}`))
+		: (await import(`./browser/${path}`))
 )()

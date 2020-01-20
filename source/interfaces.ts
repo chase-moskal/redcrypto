@@ -1,4 +1,6 @@
 
+export type Read = (path: string) => Promise<string>
+
 export type SignatureSign = (options: {
 	body: string
 	privateKey: string

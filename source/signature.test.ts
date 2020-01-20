@@ -1,59 +1,63 @@
 
-import {promises} from "fs"
+import {Suite} from "cynic"
 
 import {signatureSign} from "./signature-sign.js"
 import {signatureVerify} from "./signature-verify.js"
 
-const {readFile} = promises
+export const prepareSignatureTestingSuite = ({
+	body,
+	publicKey,
+	privateKey,
+}: {
+	body: string
+	publicKey: string
+	privateKey: string
+}): Suite => ({
 
-describe("signatures", () => {
-	const body = "testbodylol"
-	const keys = (async() => ({
-		publicKey: await readFile("public.pem", "utf8"),
-		privateKey: await readFile("private.pem", "utf8")
-	}))()
-
-	it("can sign and verify data", async() => {
-		const {privateKey, publicKey} = await keys
+	"can sign and verify data": async() => {
 		const signature = await signatureSign({body, privateKey})
 		const valid = await signatureVerify({
 			body,
 			signature,
 			publicKey,
 		})
-		expect(valid).toBe(true)
-	})
+		return valid
+	},
 
-	it("can detect tampered data", async() => {
-		const {privateKey, publicKey} = await keys
+	"can detect tampered data": async() => {
 		const signature = await signatureSign({body, privateKey})
 		const valid = await signatureVerify({
 			body: body + "2",
 			signature,
 			publicKey,
 		})
-		expect(valid).toBe(false)
-	})
+		return !valid
+	},
 
-	it("can detect invalid signature", async() => {
-		const {privateKey, publicKey} = await keys
+	"can detect invalid signature": async() => {
 		const signature = await signatureSign({body, privateKey})
 		const valid = await signatureVerify({
 			body,
 			signature: signature.slice(1),
 			publicKey,
 		})
-		expect(valid).toBe(false)
-	})
+		return !valid
+	},
 
-	it("throws on invalid public key", async() => {
-		const {privateKey, publicKey} = await keys
+	"throws on invalid public key": async() => {
 		const signature = await signatureSign({body, privateKey})
-		const shouldFail = (async() => signatureVerify({
-			body,
-			signature,
-			publicKey: publicKey.slice(1),
-		}))
-		await expect(shouldFail()).rejects.toBeTruthy()
-	})
+
+		try {
+			const valid = await signatureVerify({
+				body,
+				signature,
+				publicKey: publicKey.slice(1),
+			})
+		}
+		catch (error) {
+			return true
+		}
+
+		return false
+	}
 })

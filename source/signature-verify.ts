@@ -2,10 +2,9 @@
 import {SignatureVerify} from "./interfaces.js"
 import {smartImport} from "./internals/smart-import.js"
 
-const promise = smartImport<SignatureVerify>(
-	"signature-verify.js",
-	"signatureVerify"
+const promise = smartImport<{signatureVerify: SignatureVerify}>(
+	"signature-verify.js"
 )
 
 export const signatureVerify: SignatureVerify =
-	async(options) => (await promise)(options)
+	async(options) => (await promise).signatureVerify(options)
