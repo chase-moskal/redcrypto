@@ -1,7 +1,7 @@
 {
 	"name": "redcrypto",
 	"version": "0.0.0-dev.0",
-	"description": "crypto that works places",
+	"description": "token and signature crypto for node and browser",
 	"license": "ISC",
 	"author": "Chase Moskal <chasemoskal@gmail.com",
 	"type": "module",
@@ -22,21 +22,30 @@
 		"watch-cjs": "npm run compile-esm -s -- --watch",
 		"generate-keys": "./generate-keys",
 		"start": "serve",
-		"test": "run-p test-node test-puppeteer",
+		"test": "npm run test-node -s & npm run test-puppeteer -s & wait",
 		"test-node": "cynic node --label='redcrypto tests (node)' dist/redcrypto.test.js",
 		"test-puppeteer": "cynic puppeteer --label='redcrypto tests (browser)' dist/redcrypto.test.js"
 	},
-	"keywords": [],
+	"keywords": [
+		"crypto",
+		"cryptography",
+		"isomorphic",
+		"browser",
+		"node",
+		"javascript",
+		"webcrypto"
+	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/chase-moskal/renraku.git"
+		"url": "git+https://github.com/chase-moskal/redcrypto.git"
 	},
 	"bugs": {
-		"url": "https://github.com/chase-moskal/renraku/issues"
+		"url": "https://github.com/chase-moskal/redcrypto/issues"
 	},
-	"homepage": "https://github.com/chase-moskal/renraku#readme",
+	"homepage": "https://github.com/chase-moskal/redcrypto#readme",
 	"devDependencies": {
 		"@types/node": "^13.1.7",
+		"cynic": "0.1.0-dev.4",
 		"importly": "0.1.0-dev.0",
 		"mkdirp": "^0.5.1",
 		"npm-run-all": "^4.1.5",
@@ -46,7 +55,5 @@
 		"serve": "^11.3.0",
 		"typescript": "^3.7.4"
 	},
-	"dependencies": {
-		"cynic": "0.1.0-dev.3"
-	}
+	"dependencies": {}
 }

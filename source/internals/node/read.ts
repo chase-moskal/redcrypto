@@ -4,5 +4,4 @@ import {Read} from "../../interfaces.js"
 
 const {readFile} = promises
 
-export const read: Read = async(path: string) =>
-	readFile(path, "utf8")
+export const read: Read = async(path: string) => readFile(path, "utf8")

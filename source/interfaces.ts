@@ -11,3 +11,26 @@ export type SignatureVerify = (options: {
 	signature: string
 	publicKey: string
 }) => Promise<boolean>
+
+export interface TokenData<Payload> {
+	iat: any
+	exp: any
+	payload: Payload
+}
+
+export interface TokenSignOptions<Payload> {
+	payload: Payload
+	expiresIn: number
+	privateKey: string
+}
+
+export interface TokenVerifyOptions {
+	token: string
+	publicKey: string
+}
+
+export type TokenSign<Payload> = (options: TokenSignOptions<Payload>) =>
+	Promise<string>
+
+export type TokenVerify<Payload> = (options: TokenVerifyOptions) =>
+	Promise<TokenData<Payload>>
