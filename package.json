@@ -1,6 +1,6 @@
 {
 	"name": "redcrypto",
-	"version": "0.0.0-dev.1",
+	"version": "0.0.0-dev.2",
 	"description": "simple token and signature crypto",
 	"license": "ISC",
 	"author": "Chase Moskal <chasemoskal@gmail.com",
@@ -10,7 +10,8 @@
 	"files": [
 		"dist",
 		"source",
-		"dist-cjs"
+		"dist-cjs",
+		"generate-keys"
 	],
 	"scripts": {
 		"prepare": "run-s clean && run-p compile-esm compile-cjs generate-keys && run-s test",
