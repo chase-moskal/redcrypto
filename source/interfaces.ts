@@ -1,16 +1,15 @@
 
-export type Read = (path: string) => Promise<string>
+import {Algorithm} from "jsonwebtoken"
+import {HexBase64Latin1Encoding} from "crypto"
 
-export type SignatureSign = (options: {
-	body: string
-	privateKey: string
-}) => Promise<string>
+export interface SignatureSettings {
+	algorithm: string
+	format: HexBase64Latin1Encoding
+}
 
-export type SignatureVerify = (options: {
-	body: string
-	signature: string
-	publicKey: string
-}) => Promise<boolean>
+export interface TokenSettings {
+	algorithm: Algorithm
+}
 
 export interface TokenData<Payload> {
 	iat: any
@@ -18,7 +17,18 @@ export interface TokenData<Payload> {
 	payload: Payload
 }
 
-export interface TokenSignOptions<Payload> {
+export interface SignatureSignOptions extends Partial<SignatureSettings> {
+	body: string
+	privateKey: string
+}
+
+export interface SignatureVerifyOptions extends Partial<SignatureSettings> {
+	body: string
+	signature: string
+	publicKey: string
+}
+
+export interface TokenSignOptions<Payload> extends Partial<TokenSettings> {
 	payload: Payload
 	expiresIn: number
 	privateKey: string
@@ -28,9 +38,3 @@ export interface TokenVerifyOptions {
 	token: string
 	publicKey: string
 }
-
-export type TokenSign<Payload> = (options: TokenSignOptions<Payload>) =>
-	Promise<string>
-
-export type TokenVerify<Payload> = (options: TokenVerifyOptions) =>
-	Promise<TokenData<Payload>>

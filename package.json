@@ -1,7 +1,7 @@
 {
 	"name": "redcrypto",
 	"version": "0.0.0-dev.0",
-	"description": "token and signature crypto for node and browser",
+	"description": "simple token and signature crypto",
 	"license": "ISC",
 	"author": "Chase Moskal <chasemoskal@gmail.com",
 	"type": "module",
@@ -19,21 +19,23 @@
 		"compile-cjs": "tsc --module commonjs --outDir dist-cjs",
 		"watch": "run-p watch-esm watch-cjs",
 		"watch-esm": "npm run compile-esm -s -- --watch",
-		"watch-cjs": "npm run compile-esm -s -- --watch",
+		"watch-cjs": "npm run compile-cjs -s -- --watch",
 		"generate-keys": "./generate-keys",
 		"start": "serve",
-		"test": "npm run test-node -s & npm run test-puppeteer -s & wait",
-		"test-node": "cynic node --label='redcrypto tests (node)' dist/redcrypto.test.js",
-		"test-puppeteer": "cynic puppeteer --label='redcrypto tests (browser)' dist/redcrypto.test.js"
+		"test": "cynic node --label='redcrypto tests (node)' dist/internals/tests/redcrypto.test.js"
 	},
 	"keywords": [
+		"auth",
+		"authoritarian",
 		"crypto",
 		"cryptography",
-		"isomorphic",
-		"browser",
+		"signature",
+		"token",
+		"jsonwebtoken",
+		"jwt",
 		"node",
 		"javascript",
-		"webcrypto"
+		"typescript"
 	],
 	"repository": {
 		"type": "git",
@@ -44,7 +46,8 @@
 	},
 	"homepage": "https://github.com/chase-moskal/redcrypto#readme",
 	"devDependencies": {
-		"@types/node": "^13.1.7",
+		"@types/jsonwebtoken": "^8.3.6",
+		"@types/node": "^13.1.8",
 		"cynic": "0.1.0-dev.4",
 		"importly": "0.1.0-dev.0",
 		"mkdirp": "^0.5.1",
@@ -55,5 +58,7 @@
 		"serve": "^11.3.0",
 		"typescript": "^3.7.4"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"jsonwebtoken": "^8.5.1"
+	}
 }

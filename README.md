@@ -1,11 +1,10 @@
 
 # redcrypto
 
-some crypto functions that work in node and modern browser
+crypto for authoritarian auth system
 
-esm for browser, commonjs for node
-
- - tokenSign
- - tokenVerify
- - signatureSign
- - signatureVerify
+- tokenSign
+- tokenVerify
+- tokenDecode
+- signatureSign
+- signatureVerify

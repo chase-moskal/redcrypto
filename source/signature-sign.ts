@@ -1,10 +1,19 @@
 
-import {SignatureSign} from "./interfaces.js"
-import {smartImport} from "./internals/smart-import.js"
+import {createSign} from "crypto"
+import {SignatureSignOptions} from "./interfaces.js"
+import {defaultSignatureSettings} from "./internals/default-signature-settings.js"
 
-const promise = smartImport<{signatureSign: SignatureSign}>(
-	"signature-sign.js"
-)
+export async function signatureSign(options: SignatureSignOptions): Promise<string> {
+	const {
+		body,
+		format,
+		algorithm,
+		privateKey,
+	} = {...defaultSignatureSettings, ...options}
 
-export const signatureSign: SignatureSign =
-	async(options) => (await promise).signatureSign(options)
+	const signer = createSign(algorithm)
+	signer.write(body)
+	signer.end()
+
+	return signer.sign(privateKey, format)
+}

@@ -1,8 +1,7 @@
 
 import {Suite} from "cynic"
-
-import {signatureSign} from "./signature-sign.js"
-import {signatureVerify} from "./signature-verify.js"
+import {signatureSign} from "../../signature-sign.js"
+import {signatureVerify} from "../../signature-verify.js"
 
 export const prepareSignatureTestingSuite = ({
 	body,

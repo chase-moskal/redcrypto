@@ -1,10 +1,22 @@
 
-import {SignatureVerify} from "./interfaces.js"
-import {smartImport} from "./internals/smart-import.js"
+import {createVerify} from "crypto"
+import {SignatureVerifyOptions} from "./interfaces.js"
+import {defaultSignatureSettings} from "./internals/default-signature-settings.js"
 
-const promise = smartImport<{signatureVerify: SignatureVerify}>(
-	"signature-verify.js"
-)
+export async function signatureVerify(
+	options: SignatureVerifyOptions
+): Promise<boolean> {
+	const {
+		body,
+		format,
+		algorithm,
+		signature,
+		publicKey,
+	} = {...defaultSignatureSettings, ...options}
 
-export const signatureVerify: SignatureVerify =
-	async(options) => (await promise).signatureVerify(options)
+	const verifier = createVerify(algorithm)
+	verifier.write(body)
+	verifier.end()
+
+	return verifier.verify(publicKey, signature, format)
+}

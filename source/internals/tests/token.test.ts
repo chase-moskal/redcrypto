@@ -1,21 +1,8 @@
 
 import {Suite} from "cynic"
-
-import {tokenSign} from "./token-sign.js"
-import {tokenVerify} from "./token-verify.js"
-
-const nap = (duration: number) => new Promise(
-	resolve => setTimeout(resolve, duration)
-)
-
-function tamperStringHalfway(subject: string) {
-	const {length} = subject
-	return Array.from(subject).map(
-		(character, index) => index === Math.floor(length / 2)
-			? "@"
-			: character
-	).join("")
-}
+import {tokenSign} from "../../token-sign.js"
+import {tokenVerify} from "../../token-verify.js"
+import {tokenDecode} from "../../token-decode.js"
 
 export const prepareTokenTestingSuite = ({
 	payload,
@@ -34,7 +21,7 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresIn: 100 * 1000,
+			expiresIn: 100,
 		})
 		const {payload: payload2} = await tokenVerify<typeof payload>({
 			token,
@@ -50,9 +37,9 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresIn: 1 * 1000,
+			expiresIn: 1,
 		})
-		await nap(1.1 * 1000)
+		await nap(1.1)
 		try {
 			await tokenVerify({
 				token,
@@ -69,7 +56,7 @@ export const prepareTokenTestingSuite = ({
 		let goodToken = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresIn: 100 * 1000,
+			expiresIn: 100,
 		})
 		const badToken = tamperStringHalfway(goodToken)
 		try {
@@ -83,4 +70,30 @@ export const prepareTokenTestingSuite = ({
 			return true
 		}
 	},
+
+	"decode a token without verification": async() => {
+		const token = await tokenSign<typeof payload>({
+			payload,
+			privateKey,
+			expiresIn: 100,
+		})
+		const {payload: payload2} = await tokenDecode<typeof payload>(token)
+		return (
+			payload2.a === payload.a &&
+			payload2.b === payload.b
+		)
+	},
 })
+
+const nap = (seconds: number) => new Promise(
+	resolve => setTimeout(resolve, seconds * 1000)
+)
+
+function tamperStringHalfway(subject: string) {
+	const {length} = subject
+	return Array.from(subject).map(
+		(character, index) => index === Math.floor(length / 2)
+			? "@"
+			: character
+	).join("")
+}
