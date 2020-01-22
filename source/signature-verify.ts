@@ -3,9 +3,9 @@ import {createVerify} from "crypto"
 import {SignatureVerifyOptions} from "./interfaces.js"
 import {defaultSignatureSettings} from "./internals/default-signature-settings.js"
 
-export async function signatureVerify(
+export function signatureVerify(
 	options: SignatureVerifyOptions
-): Promise<boolean> {
+): boolean {
 	const {
 		body,
 		format,
