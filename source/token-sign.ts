@@ -10,12 +10,15 @@ export async function tokenSign<Payload>(
 	const {
 		payload,
 		algorithm,
-		expiresIn,
 		privateKey,
+		expiresMilliseconds,
 	} = {...defaultTokenSettings, ...options}
 
 	const data: {payload: Payload} = {payload}
-	const signOptions: SignOptions = {algorithm, expiresIn}
+	const signOptions: SignOptions = {
+		algorithm,
+		expiresIn: expiresMilliseconds / 1000
+	}
 
 	return new Promise<string>((resolve, reject) => {
 		jsonwebtoken.sign(

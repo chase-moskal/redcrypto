@@ -21,7 +21,7 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresIn: 100,
+			expiresMilliseconds: 100 * 1000,
 		})
 		const {payload: payload2} = await tokenVerify<typeof payload>({
 			token,
@@ -37,9 +37,9 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresIn: 1,
+			expiresMilliseconds: 1 * 1000,
 		})
-		await nap(1.1)
+		await nap(1.1 * 1000)
 		try {
 			await tokenVerify({
 				token,
@@ -56,7 +56,7 @@ export const prepareTokenTestingSuite = ({
 		let goodToken = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresIn: 100,
+			expiresMilliseconds: 100 * 1000,
 		})
 		const badToken = tamperStringHalfway(goodToken)
 		try {
@@ -75,9 +75,9 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresIn: 100,
+			expiresMilliseconds: 100 * 1000,
 		})
-		const {payload: payload2} = await tokenDecode<typeof payload>(token)
+		const {payload: payload2} = tokenDecode<typeof payload>(token)
 		return (
 			payload2.a === payload.a &&
 			payload2.b === payload.b
@@ -85,8 +85,8 @@ export const prepareTokenTestingSuite = ({
 	},
 })
 
-const nap = (seconds: number) => new Promise(
-	resolve => setTimeout(resolve, seconds * 1000)
+const nap = (milliseconds: number) => new Promise(
+	resolve => setTimeout(resolve, milliseconds)
 )
 
 function tamperStringHalfway(subject: string) {

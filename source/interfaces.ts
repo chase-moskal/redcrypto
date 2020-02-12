@@ -30,8 +30,8 @@ export interface SignatureVerifyOptions extends Partial<SignatureSettings> {
 
 export interface TokenSignOptions<Payload> extends Partial<TokenSettings> {
 	payload: Payload
-	expiresIn: number
 	privateKey: string
+	expiresMilliseconds: number
 }
 
 export interface TokenVerifyOptions {
