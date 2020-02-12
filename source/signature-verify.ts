@@ -3,9 +3,7 @@ import {createVerify} from "crypto"
 import {SignatureVerifyOptions} from "./interfaces.js"
 import {defaultSignatureSettings} from "./internals/default-signature-settings.js"
 
-export function signatureVerify(
-	options: SignatureVerifyOptions
-): boolean {
+export function signatureVerify(options: SignatureVerifyOptions): boolean {
 	const {
 		body,
 		format,
