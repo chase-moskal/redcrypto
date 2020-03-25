@@ -38,3 +38,14 @@ export interface TokenVerifyOptions {
 	token: string
 	publicKey: string
 }
+
+// curries
+
+export type SignToken = <Payload extends {}>(
+	payload: Payload,
+	expiresMilliseconds: number
+) => Promise<string>
+
+export type VerifyToken = <Payload extends {}>(
+	token: string
+) => Promise<Payload>

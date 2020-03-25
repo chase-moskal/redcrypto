@@ -2,6 +2,7 @@
 import {Suite} from "cynic"
 import {read} from "../toolbox/read.js"
 import {prepareTokenTestingSuite} from "./token.test.js"
+import {prepareMocksTestingSuite} from "./mocks.test.js"
 import {prepareSignatureTestingSuite} from "./signature.test.js"
 
 export default <Suite>(async(): Promise<Suite> => {
@@ -20,6 +21,7 @@ export default <Suite>(async(): Promise<Suite> => {
 			payload,
 			publicKey,
 			privateKey,
-		})
+		}),
+		"mocks": prepareMocksTestingSuite(),
 	}
 })
