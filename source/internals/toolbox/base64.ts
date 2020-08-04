@@ -19,17 +19,17 @@ export const url = Object.freeze({
 		const base64 = encode(text)
 		const base64url = addEqualsPadding(
 			base64
-				.replace(/-/g, "+")
-				.replace(/_/g, "/")
+				.replace(/=/g, "")
+				.replace(/\+/g, "-")
+				.replace(/\//g, "_")
 		)
 		return base64url
 	},
 
 	decode: (base64url: string) => {
 		const base64 = base64url
-			.replace(/=/g, "")
-			.replace(/\+/g, "-")
-			.replace(/\//g, "_")
+			.replace(/-/g, "+")
+			.replace(/_/g, "/")
 		return decode(base64)
 	},
 })
