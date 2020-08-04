@@ -1,9 +1,10 @@
 
 # redcrypto
 
-crypto for authoritarian auth system
+crypto for metalshop
 
 isomorphic
+- renraku/dist/base64.js
 - renraku/dist/token-decode.js
 - renraku/dist/curries/mock-sign-token.js
 - renraku/dist/curries/mock-verify-token.js

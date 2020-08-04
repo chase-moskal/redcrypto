@@ -1,6 +1,6 @@
 
+import * as base64 from "./base64.js"
 import {TokenData, TokenDecode} from "./types.js"
-import * as base64 from "./internals/toolbox/base64.js"
 
 export const tokenDecode: TokenDecode = function decode<Payload>(
 		token: string

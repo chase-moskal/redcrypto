@@ -1,6 +1,6 @@
 
 import {Suite, expect} from "cynic"
-import * as base64 from "../toolbox/base64.js"
+import * as base64 from "../../base64.js"
 
 function loopback(s: string) {
 	return base64.decode(base64.encode(s))

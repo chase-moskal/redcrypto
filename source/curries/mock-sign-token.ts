@@ -1,5 +1,5 @@
 
-import * as base64 from "../internals/toolbox/base64.js"
+import * as base64 from "../base64.js"
 import {TokenData, SignToken, TokenSignOptions} from "../types.js"
 
 const tokenize = (object: {}) => (
