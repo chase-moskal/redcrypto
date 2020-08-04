@@ -42,17 +42,16 @@ export const prepareTokenTestingSuite = ({
 			algorithm: "none",
 			lifespan: minute,
 		})
-		let rejected = false
 		try {
 			await tokenVerify<typeof payload>({
 				token,
 				publicKey,
 			})
+			return false
 		}
 		catch (e) {
-			rejected = true
+			return true
 		}
-		return rejected
 	},
 
 	"expired token fails verification": async() => {
