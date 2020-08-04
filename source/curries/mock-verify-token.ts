@@ -1,5 +1,5 @@
 
-import {VerifyToken} from "../interfaces.js"
+import {VerifyToken} from "../types.js"
 import {tokenDecode} from "../token-decode.js"
 
 export const mockVerifyToken = (): VerifyToken => async<Payload extends {}>(

@@ -1,7 +1,7 @@
 
 import jsonwebtoken, {SignOptions} from "jsonwebtoken"
 
-import {TokenSignOptions, TokenSign} from "./interfaces.js"
+import {TokenSignOptions, TokenSign} from "./types.js"
 import {defaultTokenSettings} from "./internals/default-token-settings.js"
 
 export const tokenSign: TokenSign = async function sign<Payload>(

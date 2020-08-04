@@ -1,6 +1,6 @@
 
 import {createSign} from "crypto"
-import {SignatureSignOptions} from "./interfaces.js"
+import {SignatureSignOptions} from "./types.js"
 
 import {defaultSignatureSettings}
 	from "./internals/default-signature-settings.js"

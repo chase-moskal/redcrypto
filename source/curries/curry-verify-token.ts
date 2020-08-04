@@ -1,5 +1,5 @@
 
-import {VerifyToken} from "../interfaces.js"
+import {VerifyToken} from "../types.js"
 import {tokenVerify} from "../token-verify.js"
 
 export function curryVerifyToken(publicKey: string): VerifyToken {

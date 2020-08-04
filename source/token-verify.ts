@@ -1,6 +1,6 @@
 
 import jsonwebtoken from "jsonwebtoken"
-import {TokenData, TokenVerifyOptions, TokenVerify} from "./interfaces.js"
+import {TokenData, TokenVerifyOptions, TokenVerify} from "./types.js"
 
 export const tokenVerify: TokenVerify = async function verify<Payload>({
 		token,
