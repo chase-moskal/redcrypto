@@ -1,12 +1,13 @@
 
 import jsonwebtoken, {SignOptions} from "jsonwebtoken"
 
-import {TokenSignOptions} from "./interfaces.js"
+import {TokenSignOptions, TokenSign} from "./interfaces.js"
 import {defaultTokenSettings} from "./internals/default-token-settings.js"
 
-export async function tokenSign<Payload>(
-	options: TokenSignOptions<Payload>
-): Promise<string> {
+export const tokenSign: TokenSign = async function sign<Payload>(
+		options: TokenSignOptions<Payload>
+	): Promise<string> {
+
 	const {
 		payload,
 		algorithm,

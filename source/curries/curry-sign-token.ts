@@ -1,10 +1,11 @@
 
-import {SignToken} from "../interfaces.js"
 import {tokenSign} from "../token-sign.js"
+import {SignToken, TokenSignOptions} from "../interfaces.js"
 
 export function currySignToken(privateKey: string): SignToken {
-	return async<Payload extends {}>(
-		payload: Payload,
-		expiresMilliseconds: number
-	): Promise<string> => tokenSign({payload, privateKey, expiresMilliseconds})
+	return async<Payload extends {}>({
+		payload,
+		expiresMilliseconds,
+	}: TokenSignOptions<Payload>): Promise<string> =>
+		tokenSign({payload, privateKey, expiresMilliseconds})
 }

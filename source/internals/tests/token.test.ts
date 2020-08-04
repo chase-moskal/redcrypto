@@ -23,7 +23,7 @@ export const prepareTokenTestingSuite = ({
 			privateKey,
 			expiresMilliseconds: 100 * 1000,
 		})
-		const {payload: payload2} = await tokenVerify<typeof payload>({
+		const payload2 = await tokenVerify<typeof payload>({
 			token,
 			publicKey,
 		})
@@ -31,6 +31,26 @@ export const prepareTokenTestingSuite = ({
 			payload2.a === payload.a &&
 			payload2.b === payload.b
 		)
+	},
+
+	"algorithm 'none' is refused": async() => {
+		const token = await tokenSign<typeof payload>({
+			payload,
+			privateKey,
+			algorithm: "none",
+			expiresMilliseconds: 100 * 1000,
+		})
+		let rejected = false
+		try {
+			await tokenVerify<typeof payload>({
+				token,
+				publicKey,
+			})
+		}
+		catch (e) {
+			rejected = true
+		}
+		return rejected
 	},
 
 	"expired token fails verification": async() => {

@@ -1,6 +1,6 @@
 
-import {TokenData, SignToken} from "../interfaces.js"
 import * as base64 from "../internals/toolbox/base64.js"
+import {TokenData, SignToken, TokenSignOptions} from "../interfaces.js"
 
 const tokenize = (object: {}) => (
 	base64.url.fromText(
@@ -9,10 +9,10 @@ const tokenize = (object: {}) => (
 )
 
 export function mockSignToken(): SignToken {
-	return async<Payload extends {}>(
-		payload: Payload,
-		expiresMilliseconds: number
-	): Promise<string> => {
+	return async<Payload extends {}>({
+		payload,
+		expiresMilliseconds,
+	}: TokenSignOptions<Payload>): Promise<string> => {
 		const data: TokenData<any> = {
 			payload,
 			iat: Date.now(),
