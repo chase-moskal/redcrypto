@@ -10,15 +10,15 @@ export const tokenSign: TokenSign = async function sign<Payload>(
 
 	const {
 		payload,
+		lifespan,
 		algorithm,
 		privateKey,
-		expiresMilliseconds,
 	} = {...defaultTokenSettings, ...options}
 
 	const data: {payload: Payload} = {payload}
 	const signOptions: SignOptions = {
 		algorithm,
-		expiresIn: expiresMilliseconds / 1000
+		expiresIn: lifespan / 1000
 	}
 
 	return new Promise<string>((resolve, reject) => {

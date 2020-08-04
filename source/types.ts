@@ -18,8 +18,8 @@ export interface TokenData<Payload> {
 
 export interface TokenSignOptions<Payload> extends Partial<TokenSettings> {
 	payload: Payload
+	lifespan: number
 	privateKey: string
-	expiresMilliseconds: number
 }
 
 export interface TokenVerifyOptions {
@@ -43,7 +43,7 @@ export type TokenDecode = <Payload extends {}>(
 
 export type SignToken = <Payload extends {}>(options: {
 	payload: Payload
-	expiresMilliseconds: number
+	lifespan: number
 }) => Promise<string>
 
 export type VerifyToken = <Payload extends {}>(

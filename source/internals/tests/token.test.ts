@@ -4,6 +4,8 @@ import {tokenSign} from "../../token-sign.js"
 import {tokenVerify} from "../../token-verify.js"
 import {tokenDecode} from "../../token-decode.js"
 
+const minute = 60 * 1000
+
 export const prepareTokenTestingSuite = ({
 	payload,
 	publicKey,
@@ -21,7 +23,7 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresMilliseconds: 100 * 1000,
+			lifespan: minute,
 		})
 		const payload2 = await tokenVerify<typeof payload>({
 			token,
@@ -38,7 +40,7 @@ export const prepareTokenTestingSuite = ({
 			payload,
 			privateKey,
 			algorithm: "none",
-			expiresMilliseconds: 100 * 1000,
+			lifespan: minute,
 		})
 		let rejected = false
 		try {
@@ -57,7 +59,7 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresMilliseconds: 1 * 1000,
+			lifespan: 1 * 1000,
 		})
 		await nap(1.1 * 1000)
 		try {
@@ -76,7 +78,7 @@ export const prepareTokenTestingSuite = ({
 		let goodToken = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresMilliseconds: 100 * 1000,
+			lifespan: minute,
 		})
 		const badToken = tamperStringHalfway(goodToken)
 		try {
@@ -95,7 +97,7 @@ export const prepareTokenTestingSuite = ({
 		const token = await tokenSign<typeof payload>({
 			payload,
 			privateKey,
-			expiresMilliseconds: 100 * 1000,
+			lifespan: minute,
 		})
 		const {payload: payload2} = tokenDecode<typeof payload>(token)
 		return (

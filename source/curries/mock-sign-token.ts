@@ -11,12 +11,12 @@ const tokenize = (object: {}) => (
 export function mockSignToken(): SignToken {
 	return async<Payload extends {}>({
 		payload,
-		expiresMilliseconds,
+		lifespan,
 	}: TokenSignOptions<Payload>): Promise<string> => {
 		const data: TokenData<any> = {
 			payload,
 			iat: Date.now(),
-			exp: Date.now() + expiresMilliseconds,
+			exp: Date.now() + lifespan,
 		}
 		const header: {alg: any; typ: string} = {
 			alg: null,

@@ -7,12 +7,12 @@ export const prepareMocksTestingSuite = (): Suite => ({
 
 	"mock tokens can be signed and verified": async() => {
 		const payload1 = {bananas: 123}
-		const expiresMilliseconds = 1000 * 60 * 60
+		const lifespan = 1000 * 60 * 60
 
 		const signToken = mockSignToken()
 		const verifyToken = mockVerifyToken()
 
-		const token = await signToken({payload: payload1, expiresMilliseconds})
+		const token = await signToken({payload: payload1, lifespan})
 		const payload2 = await verifyToken<typeof payload1>(token)
 
 		return (
