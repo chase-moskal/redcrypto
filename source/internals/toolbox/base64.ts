@@ -1,13 +1,13 @@
 
 const browser: boolean = typeof atob === "function"
 
-export function fromText(text: string): string {
+export function encode(text: string): string {
 	return browser
 		? btoa(text)
 		: Buffer.from(text).toString("base64")
 }
 
-export function toText(base64: string): string {
+export function decode(base64: string): string {
 	return browser
 		? atob(base64)
 		: Buffer.from(base64, "base64").toString("binary")
@@ -15,8 +15,8 @@ export function toText(base64: string): string {
 
 export const url = Object.freeze({
 
-	fromText: (text: string): string => {
-		const base64 = fromText(text)
+	encode: (text: string): string => {
+		const base64 = encode(text)
 		const base64url = addEqualsPadding(
 			base64
 				.replace(/-/g, "+")
@@ -25,12 +25,12 @@ export const url = Object.freeze({
 		return base64url
 	},
 
-	toText: (base64url: string) => {
+	decode: (base64url: string) => {
 		const base64 = base64url
 			.replace(/=/g, "")
 			.replace(/\+/g, "-")
 			.replace(/\//g, "_")
-		return toText(base64)
+		return decode(base64)
 	},
 })
 

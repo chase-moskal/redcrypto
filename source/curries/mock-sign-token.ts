@@ -3,7 +3,7 @@ import * as base64 from "../internals/toolbox/base64.js"
 import {TokenData, SignToken, TokenSignOptions} from "../types.js"
 
 const tokenize = (object: {}) => (
-	base64.url.fromText(
+	base64.url.encode(
 		JSON.stringify(object)
 	)
 )
