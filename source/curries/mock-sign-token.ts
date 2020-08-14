@@ -15,8 +15,8 @@ export function mockSignToken(): SignToken {
 	}: TokenSignOptions<Payload>): Promise<string> => {
 		const data: TokenData<any> = {
 			payload,
-			iat: Date.now(),
-			exp: Date.now() + lifespan,
+			iat: Date.now() / 1000,
+			exp: (Date.now() + lifespan) / 1000,
 		}
 		const header: {alg: any; typ: string} = {
 			alg: null,
