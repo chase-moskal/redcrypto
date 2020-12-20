@@ -1,6 +1,6 @@
 
 import {Algorithm} from "jsonwebtoken"
-import {HexBase64Latin1Encoding} from "crypto"
+import {BinaryToTextEncoding} from "crypto"
 
 //
 // tokens
@@ -56,7 +56,7 @@ export type VerifyToken = <Payload extends {}>(
 
 export interface SignatureSettings {
 	algorithm: string
-	format: HexBase64Latin1Encoding
+	format: BinaryToTextEncoding
 }
 
 export interface SignatureSignOptions extends Partial<SignatureSettings> {
