@@ -20,7 +20,7 @@ functions that work on a node server
       privateKey: "<your private pem key goes here>",
       lifespan: 1000 * 60 * 60 * 24,
     })
-  }
+  }()
   ```
 - ```typescript
   import {tokenVerify} from "redcrypto/x/token-verify.js"
@@ -32,7 +32,7 @@ functions that work on a node server
       token: "<your token goes here>",
       publicKey: "<your public pem key goes here>",
     })
-  }
+  }()
   ```
 
 functions that work anywhere, including in-browser
@@ -55,7 +55,7 @@ functions that work on a node server
       body: "lol this message is authentic",
       privateKey: "<your private pem key goes here>",
     })
-  }
+  }()
   ```
 - ```typescript
   import {signatureVerify} from "redcrypto/x/signature-verify.js"
@@ -68,5 +68,5 @@ functions that work on a node server
       signature: "<your generated signature here>",
       publicKey: "<your public pem key goes here>",
     })
-  }
+  }()
   ```
