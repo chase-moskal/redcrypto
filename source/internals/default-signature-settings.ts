@@ -1,5 +1,5 @@
 
-import {SignatureSettings} from "../types"
+import {SignatureSettings} from "../types.js"
 
 export const defaultSignatureSettings: SignatureSettings = {
 	format: "base64",
