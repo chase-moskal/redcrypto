@@ -1,5 +1,7 @@
 
-# 🛡️ redcrypto — asymmetric crypto for modern web apps
+# 🛡️ redcrypto
+
+### asymmetric crypto for modern web apps
 
 - 📦 `npm install redcrypto`
 - 🎟️ json web tokens with rsa256
