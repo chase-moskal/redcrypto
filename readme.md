@@ -1,10 +1,9 @@
 
-# 🛡️ redcrypto
+# 🛡️ redcrypto — asymmetric crypto for modern web apps
 
-`npm install redcrypto`
-- 🔐 asymmetric crypto for modern web apps
-- 🎟️ json web tokens only allowing rsa256
-- 🖋️ digital signatures (default rsa256)
+- 📦 `npm install redcrypto`
+- 🎟️ json web tokens with rsa256
+- 🖋️ digital signatures, default rsa256
 - ✨ modern typescript + esm
 
 ## tokens
@@ -39,8 +38,8 @@
         import {tokenDecode} from "redcrypto/x/token-decode.js"
 
         // does not verify authenticity,
-        // only decode payload, and is synchronous
-        const payload = tokenDecode("<your token goes here>")
+        // just unpacks the token
+        const {header, data: {payload}} = tokenDecode("<your token goes here>")
         ```
 
 ## signatures
