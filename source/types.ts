@@ -1,6 +1,6 @@
 
-import {Algorithm} from "jsonwebtoken"
 import {BinaryToTextEncoding} from "crypto"
+import {Algorithm} from "./internals/badmodules/jsonwebtoken.js"
 
 //
 // tokens
