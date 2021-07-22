@@ -10,13 +10,18 @@ export interface TokenSettings {
 	algorithm: Algorithm
 }
 
+export interface TokenHeader {
+	alg: string
+	typ: string
+}
+
 export interface TokenData<Payload> {
-	iat: any
-	exp: any
+	iat: number
+	exp: number
 	payload: Payload
 }
 
-export interface TokenSignOptions<Payload> extends Partial<TokenSettings> {
+export interface TokenSignOptions<Payload> {
 	payload: Payload
 	lifespan: number
 	privateKey: string
@@ -35,9 +40,14 @@ export type TokenVerify = <Payload extends {}>(
 	options: TokenVerifyOptions
 ) => Promise<Payload>
 
+export type DecodedToken<Payload extends {}> = {
+	header: TokenHeader
+	data: TokenData<Payload>
+}
+
 export type TokenDecode = <Payload extends {}>(
 	token: string
-) => TokenData<Payload>
+) => DecodedToken<Payload>
 
 // curried
 

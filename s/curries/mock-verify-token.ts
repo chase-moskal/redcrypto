@@ -6,7 +6,7 @@ export const mockVerifyToken = (): VerifyToken => async<Payload extends {}>(
 		token: string
 	): Promise<Payload> => {
 	const decoded = tokenDecode<Payload>(token)
-	const expiry = decoded.exp * 1000
+	const expiry = decoded.data.exp * 1000
 	if (Date.now() > expiry) throw new Error("token expired")
-	return decoded.payload
+	return decoded.data.payload
 }

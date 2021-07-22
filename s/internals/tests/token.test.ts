@@ -1,8 +1,9 @@
 
-import {Suite} from "cynic"
+import {Suite, expect} from "cynic"
 import {tokenSign} from "../../token-sign.js"
 import {tokenVerify} from "../../token-verify.js"
 import {tokenDecode} from "../../token-decode.js"
+import {tokenSettings} from "../token-settings.js"
 
 const minute = 60 * 1000
 
@@ -33,25 +34,6 @@ export const prepareTokenTestingSuite = ({
 			payload2.a === payload.a &&
 			payload2.b === payload.b
 		)
-	},
-
-	"algorithm 'none' is refused": async() => {
-		const token = await tokenSign<typeof payload>({
-			payload,
-			privateKey,
-			algorithm: "none",
-			lifespan: minute,
-		})
-		try {
-			await tokenVerify<typeof payload>({
-				token,
-				publicKey,
-			})
-			return false
-		}
-		catch (e) {
-			return true
-		}
 	},
 
 	"expired token fails verification": async() => {
@@ -98,11 +80,12 @@ export const prepareTokenTestingSuite = ({
 			privateKey,
 			lifespan: minute,
 		})
-		const {payload: payload2} = tokenDecode<typeof payload>(token)
-		return (
-			payload2.a === payload.a &&
-			payload2.b === payload.b
-		)
+		const {header, data: {payload: payload2}} =
+			tokenDecode<typeof payload>(token)
+		expect(header.typ).equals("JWT")
+		expect(header.alg).equals(tokenSettings.algorithm)
+		expect(payload2.a).equals(payload.a)
+		expect(payload2.b).equals(payload.b)
 	},
 })
 

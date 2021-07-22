@@ -1,6 +1,6 @@
 
 import {TokenSettings} from "../types.js"
 
-export const defaultTokenSettings: TokenSettings = {
+export const tokenSettings: TokenSettings = {
 	algorithm: "RS256"
 }

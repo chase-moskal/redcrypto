@@ -6,19 +6,19 @@
 	"author": "Chase Moskal <chasemoskal@gmail.com",
 	"type": "module",
 	"files": [
-		"dist",
-		"source",
+		"s",
+		"x",
 		"generate-keys"
 	],
 	"scripts": {
 		"prepare": "run-s clean && run-p compile generate-keys && run-s test",
-		"clean": "rimraf dist && mkdirp dist",
+		"clean": "rimraf x && mkdirp x",
 		"compile": "tsc",
 		"watch": "npm run compile -s -- --watch",
 		"generate-keys": "./generate-keys",
 		"start": "serve",
-		"test": "cynic node --label='redcrypto tests (node)' dist/internals/tests/redcrypto.test.js",
-		"test-debug": "node inspect node_modules/cynic/dist/cli.js node --label='redcrypto tests (node)' dist/internals/tests/redcrypto.test.js"
+		"test": "cynic node --label='redcrypto tests (node)' x/internals/tests/redcrypto.test.js",
+		"test-debug": "node inspect node_modules/cynic/dist/cli.js node --label='redcrypto tests (node)' x/internals/tests/redcrypto.test.js"
 	},
 	"keywords": [
 		"auth",
@@ -42,6 +42,7 @@
 	},
 	"homepage": "https://github.com/chase-moskal/redcrypto#readme",
 	"devDependencies": {
+		"@types/jsonwebtoken": "^8.5.4",
 		"@types/node": "^16.4.0",
 		"cynic": "^0.1.0-dev.16",
 		"importly": "0.1.0-dev.0",
@@ -53,7 +54,6 @@
 		"typescript": "^4.3.5"
 	},
 	"dependencies": {
-		"@types/jsonwebtoken": "^8.5.4",
 		"jsonwebtoken": "^8.5.1"
 	}
 }

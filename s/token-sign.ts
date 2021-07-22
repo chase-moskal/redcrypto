@@ -1,22 +1,15 @@
 
 import {TokenSignOptions, TokenSign} from "./types.js"
+import {tokenSettings} from "./internals/token-settings.js"
 import * as jwt from "./internals/badmodules/jsonwebtoken.js"
-import {defaultTokenSettings} from "./internals/default-token-settings.js"
 
-export const tokenSign: TokenSign = async function<Payload>(
-		options: TokenSignOptions<Payload>
-	): Promise<string> {
-
-	const {
-		payload,
-		lifespan,
-		algorithm,
-		privateKey,
-	} = {...defaultTokenSettings, ...options}
+export const tokenSign: TokenSign = async function<Payload>({
+		payload, lifespan, privateKey,
+	}: TokenSignOptions<Payload>): Promise<string> {
 
 	const data: {payload: Payload} = {payload}
 	const signOptions: jwt.SignOptions = {
-		algorithm,
+		algorithm: tokenSettings.algorithm,
 		expiresIn: lifespan / 1000,
 	}
 
