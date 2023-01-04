@@ -1,4 +1,9 @@
 
+### v0.0.0
+
+- updated dependencies, and `npm audit fix`
+- licensed with mit license
+
 ### v0.0.0-dev.9
 
 breaking
