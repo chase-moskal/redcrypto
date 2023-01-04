@@ -5,8 +5,9 @@
 			"type": "node",
 			"request": "launch",
 			"name": "debug",
-			"program": "${workspaceFolder}/debug",
-			"stopOnEntry": true
+			"program": "${workspaceFolder}/node_modules/cynic/dist/cli.js",
+			"args": ["node", "x/internals/tests/redcrypto.test.js"],
+			"stopOnEntry": false
 		}
 	]
 }

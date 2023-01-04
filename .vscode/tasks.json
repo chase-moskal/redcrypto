@@ -2,8 +2,11 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "install",
+			"label": "full build",
+			"detail": "do a full project build",
+			"type": "shell",
+			"command": "./.vscode/full-build.sh",
+			"problemMatcher": ["$tsc"],
 			"group": {
 				"kind": "build",
 				"isDefault": true
