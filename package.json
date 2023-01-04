@@ -2,7 +2,7 @@
 	"name": "redcrypto",
 	"version": "0.0.0",
 	"description": "web app cryptography",
-	"license": "ISC",
+	"license": "MIT",
 	"author": "Chase Moskal <chasemoskal@gmail.com",
 	"type": "module",
 	"files": [
