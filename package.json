@@ -11,7 +11,7 @@
 		"generate-keys"
 	],
 	"scripts": {
-		"prepare": "run-s clean && run-p compile generate-keys && run-s test",
+		"build": "run-s clean && run-p compile generate-keys && run-s test",
 		"clean": "rimraf x && mkdirp x",
 		"compile": "tsc",
 		"watch": "npm run compile -s -- --watch",
