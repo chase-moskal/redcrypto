@@ -1,8 +1,8 @@
 
 import {createVerify} from "crypto"
 import {SignatureVerifyOptions} from "./types.js"
+import {RedcryptoRejectionError} from "./redcrypto-rejection-error.js"
 import {defaultSignatureSettings} from "./internals/default-signature-settings.js"
-import { RedcryptoRejectionError } from "./redcrypto-rejection-error.js"
 
 export function signatureVerify(options: SignatureVerifyOptions): string {
 	const {
