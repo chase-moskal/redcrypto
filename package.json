@@ -42,18 +42,18 @@
 	},
 	"homepage": "https://github.com/chase-moskal/redcrypto#readme",
 	"devDependencies": {
-		"@types/jsonwebtoken": "^9.0.1",
-		"@types/node": "^18.15.3",
-		"cynic": "^0.2.0",
+		"@types/jsonwebtoken": "^9.0.2",
+		"@types/node": "^20.4.0",
+		"cynic": "^0.2.1",
 		"importly": "^0.2.0",
-		"mkdirp": "^2.1.5",
+		"mkdirp": "^3.0.1",
 		"npm-run-all": "^4.1.5",
 		"replace": "^1.2.2",
-		"rimraf": "^4.4.0",
+		"rimraf": "^5.0.1",
 		"serve": "^14.2.0",
-		"typescript": "^4.9.5"
+		"typescript": "^5.1.6"
 	},
 	"dependencies": {
-		"jsonwebtoken": "^9.0.0"
+		"jsonwebtoken": "^9.0.1"
 	}
 }
