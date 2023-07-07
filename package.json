@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"author": "Chase Moskal <chasemoskal@gmail.com",
 	"type": "module",
+	"main": "x/index.js",
 	"files": [
 		"s",
 		"x",
